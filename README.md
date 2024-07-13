@@ -1,1 +1,4 @@
-# ui-study-android
+# UI 구현 연습 스터디 > Android
+```
+2024.07.07.일 ~
+```
