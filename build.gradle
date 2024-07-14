@@ -50,6 +50,9 @@ buildscript {
 
         // Kakao SDK
         kakao_sdk_version = "2.20.3"
+
+        // Naver SDK
+        naver_sdk_version = "5.9.1"
     }
 }
 plugins {

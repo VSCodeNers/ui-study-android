@@ -24,12 +24,22 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         def kakaoNativeAppKey = properties.getProperty('kakao.native.app.key', '')
+        def naverClientId = properties.getProperty('naver.client.id', '')
+        def naverClientSecret = properties.getProperty('naver.client.secret', '')
+        def naverClientName = properties.getProperty('naver.client.name', '')
 
         if (!kakaoNativeAppKey.isEmpty()) {
             buildConfigField "String", 'KAKAO_NATIVE_APP_KEY', "${kakaoNativeAppKey}"
-            manifestPlaceholders = [KAKAO_NATIVE_APP_KEY: "\"${kakaoNativeAppKey}\""]
         } else {
             throw new GradleException("KAKAO_NATIVE_APP_KEY is not set in local.properties")
+        }
+
+        if (!naverClientId.isEmpty() && !naverClientSecret.isEmpty() && !naverClientName.isEmpty()) {
+            buildConfigField "String", 'NAVER_CLIENT_ID', "${naverClientId}"
+            buildConfigField "String", 'NAVER_CLIENT_SECRET', "${naverClientSecret}"
+            buildConfigField "String", 'NAVER_CLIENT_NAME', "${naverClientName}"
+        } else {
+            throw new GradleException("NAVER_CLIENT_ID, NAVER_CLIENT_SECRET, NAVER_CLIENT_NAME is not set in local.properties")
         }
     }
 
@@ -64,4 +74,7 @@ dependencies {
 
     // 카카오 로그인 SDK
     implementation "com.kakao.sdk:v2-user:$kakao_sdk_version" // 카카오 로그인 API 모듈
+
+    // 네이버 로그인 SDK
+    implementation "com.navercorp.nid:oauth:$naver_sdk_version" // jdk 11
 }

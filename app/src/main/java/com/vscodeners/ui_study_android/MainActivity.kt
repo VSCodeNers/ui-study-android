@@ -15,6 +15,8 @@ import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.navercorp.nid.NaverIdLoginSDK
+import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.vscodeners.ui_study_android.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 
@@ -46,6 +48,26 @@ class MainActivity : AppCompatActivity() {
         binding.btnKakaoLogin.setOnClickListener {
             handleKakaoLogin()
         }
+
+        // 네이버 로그인
+        val oauthLoginCallback = object : OAuthLoginCallback {
+            override fun onSuccess() {
+                // 네이버 로그인 인증이 성공했을 때 수행할 코드 추가
+
+            }
+            override fun onFailure(httpStatus: Int, message: String) {
+                val errorCode = NaverIdLoginSDK.getLastErrorCode().code
+                val errorDescription = NaverIdLoginSDK.getLastErrorDescription()
+                Toast.makeText(this@MainActivity,"errorCode:$errorCode, errorDesc:$errorDescription",Toast.LENGTH_SHORT).show()
+            }
+            override fun onError(errorCode: Int, message: String) {
+                onFailure(errorCode, message)
+            }
+        }
+
+
+        NaverIdLoginSDK.authenticate(this, oauthLoginCallback)
+        binding.btnNaverLogin.setOAuthLogin(oauthLoginCallback)
     }
 
     // 카카오 로그인 callback 세팅
