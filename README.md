@@ -20,7 +20,7 @@
 ---
 
 ### ✅ Weekly Study
-| Week | Task | Period | Issue |
-| :---: | :---: | :---: | :---: |
-| 1주차 | 카카오 로그인 | 2024.07.07.일 ~ 2024.07.14.일 | https://github.com/VSCodeNers/ui-study-android/issues/1 |
-|   | 네이버 로그인 |   | https://github.com/VSCodeNers/ui-study-android/issues/2 |
+| Week | Task | Period | Issue | PR |
+| :---: | :---: | :---: | :---: | :---: |
+| 1주차 | 카카오 로그인 | 2024.07.07.일 ~ 2024.07.14.일 | https://github.com/VSCodeNers/ui-study-android/issues/1 | https://github.com/VSCodeNers/ui-study-android/pull/3 |
+|   | 네이버 로그인 |   | https://github.com/VSCodeNers/ui-study-android/issues/2 | https://github.com/VSCodeNers/ui-study-android/pull/4 |
