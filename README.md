@@ -24,3 +24,4 @@
 | :---: | :---: | :---: | :---: | :---: | :--: |
 | 1주차 | 카카오 로그인 | 2024.07.07.일 ~ 2024.07.14.일 | [week01/#1/kakao_login](https://github.com/VSCodeNers/ui-study-android/tree/week01/%231/kakao_login) | https://github.com/VSCodeNers/ui-study-android/issues/1 | https://github.com/VSCodeNers/ui-study-android/pull/3 |
 |   | 네이버 로그인 |   | [week01/#2/naver_login](https://github.com/VSCodeNers/ui-study-android/tree/week01/%232/naver_login) | https://github.com/VSCodeNers/ui-study-android/issues/2 | https://github.com/VSCodeNers/ui-study-android/pull/4 |
+| 2주차 | MVP 패턴 | 2024.07.14.일 ~ 2024.07.21.일 |  |  |
