@@ -1,4 +1,4 @@
-package com.vscodeners.ui_study_android
+package com.vscodeners.ui_study_android.feature
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
@@ -17,9 +17,11 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.OAuthLoginCallback
-import com.vscodeners.ui_study_android.databinding.ActivityMainBinding
+import com.vscodeners.ui_study_android.feature.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
