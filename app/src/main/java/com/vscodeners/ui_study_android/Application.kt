@@ -3,7 +3,9 @@ package com.vscodeners.ui_study_android
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk
 import com.navercorp.nid.NaverIdLoginSDK
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class Application  : Application() {
 
     private var KAKAO_NATIVE_APP_KEY = BuildConfig.KAKAO_NATIVE_APP_KEY
