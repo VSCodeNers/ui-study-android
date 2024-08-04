@@ -1,8 +1,11 @@
 package com.vscodeners.ui_study_android.feature
 
+import android.app.Activity
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.widget.Toast
@@ -10,6 +13,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.auth
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.common.model.ClientError
@@ -23,11 +37,14 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var kakaoCallback: (OAuthToken?, Throwable?) -> Unit
+
+    // nullable한 FirebaseAuth 객체 선언
+    var auth: FirebaseAuth? = null
+    lateinit var googleSignInClient : GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +52,9 @@ class MainActivity : AppCompatActivity() {
 
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setContentView(binding.root)
+
+        //auth 객체 초기화
+        auth = FirebaseAuth.getInstance()
 
         setKakaoCallback()
 
@@ -67,9 +87,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         NaverIdLoginSDK.authenticate(this, oauthLoginCallback)
         binding.btnNaverLogin.setOAuthLogin(oauthLoginCallback)
+
+        // Google Login
+        var signInRequest = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN) //기본 로그인 방식 사용
+            .requestIdToken(BuildConfig.FIREBASE_GOOGLE_CLIENT_ID)
+            //requestIdToken :필수사항이다. 사용자의 식별값(token)을 사용하겠다.
+            //(App이 구글에게 요청)
+            .requestEmail()
+            // 사용자의 이메일을 사용하겠다.(App이 구글에게 요청)
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, signInRequest)
+
+        binding.btnGoogleLogin.setOnClickListener {
+            googleLogin()
+        }
     }
 
     // 카카오 로그인 callback 세팅
@@ -137,6 +171,51 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    // Google Login
+    private fun googleLogin() {
+        //1. 구글로 로그인을 한다.
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent,1004)
+    }
+
+    override fun onActivityResult(requestCode:Int, resultCode: Int, data: Intent?){
+        //Activity.Result_OK : 정상완료
+        //Activity.Result_CANCEL : 중간에 취소 되었음(실패)
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==1004){
+            if(resultCode == Activity.RESULT_OK){
+                //결과 Intent(data 매개변수) 에서 구글로그인 결과 꺼내오기
+                val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data!!)!!
+
+                //정상적으로 로그인되었다면
+                if(result.isSuccess){
+                    //우리의 Firebase 서버에 사용자 이메일정보보내기
+                    val account = result.signInAccount
+                    firebaseAuthWithGoogle(account)
+                }
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount?) {
+        //구글로부터 로그인된 사용자의 정보(Credentail)을 얻어온다.
+        val credential = GoogleAuthProvider.getCredential(account?.idToken!!, null)
+        //그 정보를 사용하여 Firebase의 auth를 실행한다.
+        auth?.signInWithCredential(credential)
+            ?.addOnCompleteListener {  //통신 완료가 된 후 무슨일을 할지
+                    task ->
+                if (task.isSuccessful) {
+                    // 로그인 처리를 해주면 됨!
+                    //goMainActivity(task.result?.user)
+                    showToast("구글 로그인 완료")
+                } else {
+                    // 오류가 난 경우!
+                    Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+                }
+                //progressBar.visibility = View.GONE
+            }
     }
 
     private fun showToast(message: String) {

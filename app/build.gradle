@@ -43,6 +43,13 @@ android {
         } else {
             throw new GradleException("NAVER_CLIENT_ID, NAVER_CLIENT_SECRET, NAVER_CLIENT_NAME is not set in local.properties")
         }
+
+        def firebaseGoogleClientId = properties.getProperty('firebase.google.client.id', '')
+        if (!firebaseGoogleClientId.isEmpty()) {
+            buildConfigField "String", 'FIREBASE_GOOGLE_CLIENT_ID', "${firebaseGoogleClientId}"
+        } else {
+            throw new GradleException("FIREBASE_GOOGLE_CLIENT_ID is not set in local.properties")
+        }
     }
 
     buildTypes {
@@ -79,6 +86,7 @@ dependencies {
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation libs.firebase.auth
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     // 카카오 로그인 SDK
