@@ -1,8 +1,9 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     alias(libs.plugins.jetbrains.kotlin.android)
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+//    id 'com.google.gms.google-services'
 }
 
 android {
@@ -58,4 +59,8 @@ dependencies {
 
     // 네이버 로그인 SDK
     implementation "com.navercorp.nid:oauth:$naver_sdk_version" // jdk 11
+
+    // Firebase
+//    implementation platform('com.google.firebase:firebase-bom:33.1.2')
+//    implementation 'com.google.firebase:firebase-analytics'
 }
