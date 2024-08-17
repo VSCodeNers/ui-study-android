@@ -21,7 +21,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?{
+    ): View{
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         return binding.root
     }
@@ -34,5 +34,15 @@ class HomeFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
             navController?.navigate(R.id.action_navigate_fragment_to_login)
         }
+
+        binding.btnScreenShot.setOnClickListener {
+            navController?.navigate(R.id.action_navigate_fragment_to_screen_shot)
+        }
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
