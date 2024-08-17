@@ -1,8 +1,9 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id 'com.android.application'
     alias(libs.plugins.jetbrains.kotlin.android)
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 // 프로퍼티를 선언하고, 저장한 키값을 불러온다.
@@ -42,6 +43,13 @@ android {
         } else {
             throw new GradleException("NAVER_CLIENT_ID, NAVER_CLIENT_SECRET, NAVER_CLIENT_NAME is not set in local.properties")
         }
+
+        def firebaseGoogleClientId = properties.getProperty('firebase.google.client.id', '')
+        if (!firebaseGoogleClientId.isEmpty()) {
+            buildConfigField "String", 'FIREBASE_GOOGLE_CLIENT_ID', "${firebaseGoogleClientId}"
+        } else {
+            throw new GradleException("FIREBASE_GOOGLE_CLIENT_ID is not set in local.properties")
+        }
     }
 
     buildTypes {
@@ -78,6 +86,7 @@ dependencies {
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation libs.firebase.auth
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     // 카카오 로그인 SDK
@@ -85,4 +94,8 @@ dependencies {
 
     // 네이버 로그인 SDK
     implementation "com.navercorp.nid:oauth:$naver_sdk_version" // jdk 11
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:33.1.2')
+    implementation 'com.google.firebase:firebase-analytics'
 }
