@@ -27,5 +27,5 @@
 | 2주차 | MVP 패턴 | 2024.07.14.일 ~ 2024.07.21.일 | [week02/#6/mvp_pattern](https://github.com/VSCodeNers/ui-study-android/tree/week02/%236/mvp_pattern) | https://github.com/VSCodeNers/ui-study-android/issues/6 | https://github.com/VSCodeNers/ui-study-android/pull/8 |
 | 3주차 | Firebase 연동 | 2024.07.21.일 ~ 2024.08.04.일 | [week03/#9/firebase](https://github.com/VSCodeNers/ui-study-android/tree/week03/%239/firebase) | https://github.com/VSCodeNers/ui-study-android/issues/9 | https://github.com/VSCodeNers/ui-study-android/pull/11 |
 | | Google 로그인 | | [week03/#10/google_login](https://github.com/VSCodeNers/ui-study-android/tree/week03/%2310/google_login) | https://github.com/VSCodeNers/ui-study-android/issues/10 | https://github.com/VSCodeNers/ui-study-android/pull/13 |
-| 4주차 | 화면 내 지정영역<br/>캡처 기능 | 2024.08.04.일 ~ 2024.08.18.일 | | https://github.com/VSCodeNers/ui-study-android/issues/14 | |
+| 4주차 | 화면 내 지정영역<br/>캡처 기능 | 2024.08.04.일 ~ 2024.08.18.일 | [week04/#14/screenshot](https://github.com/VSCodeNers/ui-study-android/tree/week04/%2314/screenshot) | https://github.com/VSCodeNers/ui-study-android/issues/14 | https://github.com/VSCodeNers/ui-study-android/pull/13 |
 | 5주차 | 점수% 막대<br/>그래프로 시각화 | 2024.08.18.일 ~ 2024.08.25.일 | | https://github.com/VSCodeNers/ui-study-android/issues/15 | |
