@@ -60,6 +60,10 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
     implementation "androidx.activity:activity-ktx:$activity_version"
 
+    // UI - Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation libs.firebase.auth.ktx
