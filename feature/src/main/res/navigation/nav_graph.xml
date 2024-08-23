@@ -19,6 +19,10 @@
             android:id="@+id/action_navigate_fragment_to_screen_shot"
             app:destination="@+id/screenShotFragment"/>
 
+        <action
+            android:id="@+id/action_navigate_fragment_to_progress_bar"
+            app:destination="@+id/progressBarFragment"/>
+
     </fragment>
 
     <fragment
@@ -34,6 +38,14 @@
         android:name="com.vscodeners.ui_study_android.feature.ScreenShotFragment"
         android:label="fragment_screen_shot"
         tools:layout="@layout/fragment_screen_shot">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/progressBarFragment"
+        android:name="com.vscodeners.ui_study_android.feature.ProgressBarFragment"
+        android:label="fragment_progress_bar"
+        tools:layout="@layout/fragment_progress_bar">
 
     </fragment>
 

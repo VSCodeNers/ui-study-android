@@ -33,6 +33,19 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/btn_login"/>
 
+        <Button
+            android:id="@+id/btn_progress_bar"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="% 막대 그래프"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@color/primary"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/btn_screen_shot"/>
+
     </RelativeLayout>
 
 </layout>
