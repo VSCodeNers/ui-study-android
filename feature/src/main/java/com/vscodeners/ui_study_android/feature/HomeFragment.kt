@@ -38,6 +38,10 @@ class HomeFragment : Fragment() {
         binding.btnScreenShot.setOnClickListener {
             navController?.navigate(R.id.action_navigate_fragment_to_screen_shot)
         }
+
+        binding.btnProgressBar.setOnClickListener {
+            navController?.navigate(R.id.action_navigate_fragment_to_progress_bar)
+        }
     }
 
 
