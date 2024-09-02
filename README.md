@@ -29,4 +29,4 @@
 | | Google 로그인 | | [week03/#10/google_login](https://github.com/VSCodeNers/ui-study-android/tree/week03/%2310/google_login) | https://github.com/VSCodeNers/ui-study-android/issues/10 | https://github.com/VSCodeNers/ui-study-android/pull/13 |
 | 4주차 | 화면 내 지정영역<br/>캡처 기능 | 2024.08.04.일 ~ 2024.08.18.일 | [week04/#14/screenshot](https://github.com/VSCodeNers/ui-study-android/tree/week04/%2314/screenshot) | https://github.com/VSCodeNers/ui-study-android/issues/14 | https://github.com/VSCodeNers/ui-study-android/pull/13 |
 | 5주차 | 점수% 막대<br/>그래프로 시각화 | 2024.08.18.일 ~ 2024.08.25.일 | [week05/#15/bar-graph](https://github.com/VSCodeNers/ui-study-android/tree/week05/%2315/bar-graph) | https://github.com/VSCodeNers/ui-study-android/issues/15 | https://github.com/VSCodeNers/ui-study-android/pull/19 |
-| 6주차 | 타임 피커 커스텀 | 2024.09.01.일 ~ 2024.09.08.일 | | | |
+| 6주차 | 타임 피커 커스텀 |  | | | |
